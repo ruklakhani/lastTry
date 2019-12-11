@@ -27,15 +27,21 @@ def video_url_creator(id_lst):
 #     { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' }
 # ]
 
-@app.route('/playlists')
+@app.route('/')
 def playlists_index():
     """show all playlists."""
     return render_template('playlists_index.html', playlists=playlists.find())
 
 @app.route('/playlists/new')
 def playlists_new():
-    """create a new playlist."""
-    return render_template('playlists_new.html')
+    """Create a new playlist."""
+    playlist = {
+        'title': "",
+        'description': "",
+        'videos': "",
+        'video_ids': ""
+    }
+    return render_template('playlists_new.html',playlist=playlist)
 
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
